@@ -3,6 +3,7 @@
 
 This is the repo for Team MIRAGE's submission for BiolaySumm 2025!
 
+## Download the shared task dataset: [PLOS](https://drive.google.com/drive/u/0/folders/1__OvlFElNPmu5V58aqySSXwX-72_DhEo), [eLife](https://drive.google.com/drive/u/0/folders/1__OvlFElNPmu5V58aqySSXwX-72_DhEo)
 ## Repo Structure
 Code in this repo will likely not be runnable on your own machine unless you've got a real BEEFY GPU (and even then it'll require some modification to work with your particular system). Code in `preprocessing_script` comes from CoLab notebooks and are meant to go through the datasets and extract the top 40 sentences based on different methods of evaluation. Everything else is the actual summarization code meant to be run on Hyak.
 
