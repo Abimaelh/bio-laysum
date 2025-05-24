@@ -41,7 +41,9 @@ Each of the scripts are found in the `preprocessing_script` and can be reimporte
 
 ### Available Scripts;
 -['preprocess23.py](./preprocessing_script/preprocess23.py) --For Strategies 2 & 3
+
 -[`preprocess4.py`](./preprocessing_script/preprocess4.py) – For Strategy 4 (SVD topic modeling)
+
 -[`preprocess567.py`](./preprocessing_script/preprocess567.py) – For Strategies 5, 6, and 7
 
 ### Example usage:
