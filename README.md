@@ -9,6 +9,17 @@ This is the repo for Team MIRAGE's submission for BiolaySumm 2025!
 git clone https://github.com/Abimaelh/bio-laysum.git
 cd bio-laysum
 ```
+## Create a Python Environment
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+# Get the Dataset
+
+Download the PLOS and eLife datasets from the [BioLaySumm Organizers](https://biolaysumm.org/#data)
 
 
 ## Repo Structure
