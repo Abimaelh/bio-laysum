@@ -25,7 +25,10 @@ Download the PLOS and eLife datasets from the [BioLaySumm Organizers](https://bi
 ## Repo Structure
 Code in this repo will likely not be runnable on your own machine unless you've got a real BEEFY GPU (and even then it'll require some modification to work with your particular system). Code in `preprocessing_script` comes from CoLab notebooks and are meant to go through the datasets and extract the top 40 sentences based on different methods of evaluation. Everything else is the actual summarization code meant to be run on Hyak.
 
-### Preprocessing
+
+## End-to-End Pipeline
+Step 1: Preprocessing and Extract Salient Sentences
+
 Our preprocessing mostly uses embeddings from BioBERT to make judgements about what is salient. Our preprocessing techniques are as follows:
 1. Control, just take the first 4096 tokens from the article. This doesn't have a preprocessing script.
 2. Comparing every sentence to the embedding for the title of the article.
