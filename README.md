@@ -52,7 +52,7 @@ The data for finetuning was prepared by randomly selecting 650 training instance
  ```bash 
 python src/train/finetune.py \
   --strategy 3 \
-  --hyperparam_set 1000 \
+  --hyperparam_set 1 \
   --samples 1000 \
 ```
 
