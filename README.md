@@ -33,8 +33,9 @@ Our preprocessing mostly uses embeddings from BioBERT to make judgements about w
 3. Comparing every sentence to the embedding for the title and keywords of the article.
 4. SVD Topic Modeling
 5. Turn the entire article into an embedding and compare every sentence to that mean embedding.
-6. Split the article by sections and compare sentences from sections to the mean embedding for the article. The article will have its title and keywords appended.
-7. Same as 6 except title and keywords are appended to the final set of extracted sentences.
+6. Prepends title and keywords to the article and segment the article into four core sections(abstract, introduction, results, and discussion). From this condensed content, 
+   we rank sentences according to their similarity to the mean embedding of the uncondensed article, and selectthe top 40 sentences.
+7. The reverse of 6, where we segment the article to the same four core sections, extract the top 40 sentences and prepend the title and keywords.
 
 Each of the scripts are found in the `preprocessing_script` and can be reimported into CoLab for use directly. You will need a GPU for this, and likely one stronger than the free tier GPUs.
 
