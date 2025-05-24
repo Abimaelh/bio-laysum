@@ -40,7 +40,7 @@ Our preprocessing mostly uses embeddings from BioBERT to make judgements about w
 Each of the scripts are found in the `preprocessing_script` and can be reimported into CoLab for use directly. You will need a GPU for this, and likely one stronger than the free tier GPUs.
 
 ### Available Scripts;
--['preprocess23.py](./preprocessing_script/preprocess23.py) --For Strategies 2 & 3
+-[`preprocess23.py](./preprocessing_script/preprocess23.py) --For Strategies 2 & 3
 
 -[`preprocess4.py`](./preprocessing_script/preprocess4.py) – For Strategy 4 (SVD topic modeling)
 
