@@ -3,6 +3,14 @@
 
 This is the repo for Team MIRAGE's submission for BiolaySumm 2025!
 
+## Setup instructions
+
+```bash
+git clone https://github.com/Abimaelh/bio-laysum.git
+cd bio-laysum
+```
+
+
 ## Repo Structure
 Code in this repo will likely not be runnable on your own machine unless you've got a real BEEFY GPU (and even then it'll require some modification to work with your particular system). Code in `preprocessing_script` comes from CoLab notebooks and are meant to go through the datasets and extract the top 40 sentences based on different methods of evaluation. Everything else is the actual summarization code meant to be run on Hyak.
 
