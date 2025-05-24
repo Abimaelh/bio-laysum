@@ -54,10 +54,7 @@ python preprocessing_script/preprocess23.py --input data/plos_train.json --outpu
 The data for finetuning was prepared by randomly selecting 650 training instances from both eLife and PLOS, totaling 1300 shuffled samples.
  ```bash 
 python src/train/finetune.py \
-  --strategy 3 \
-  --hyperparam_set 1 \
-  --samples 1000 \
-```
+ ```
 
 ### Step 3: Generate Lay Summaries
 Run inference with the trained model:
