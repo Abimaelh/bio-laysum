@@ -59,7 +59,7 @@ python src/train/finetune.py \
 ### Step 3: Generate Lay Summaries
 Run inference with the trained model:
 ```bash 
-python src/inference/generate.py \
+python src/inference/inference.py \
   --model_path llama_3_1_1000 \
   --input_file data/preprocessed_articles.json \
   --output_file output/summaries.json                              
