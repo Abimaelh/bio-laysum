@@ -49,17 +49,24 @@ python preprocessing_script/preprocess23.py --input data/plos_train.json --outpu
 ```
 ### Step 2: Fine-tune Llama3-8B-Instruct(LoRA)
 The data for finetuning was prepared by randomly selecting 650 training instances from both eLife and PLOS, totaling 1300 shuffled samples.
- For evaluation, we used 150 randomly
- selected validation samples from both datasets, to
-taling 300 shuffled samples.
+ ```bash 
+python src/train/finetune.py \
+  --strategy 3 \
+  --hyperparam_set 1000 \
+  --samples 1000 \
+```
 
 ### Step 3: Generate Lay Summaries
 Run inference with the trained model:
-```bash
-python                                
+```bash 
+python src/inference/generate.py \
+  --model_path llama_3_1_1000 \
+  --input_file data/preprocessed_articles.json \
+  --output_file output/summaries.json                              
 ```
 
 ### Step 4: Evaluation
+For evaluation, we used 150 randomly selected validation samples from both datasets, totaling 300 shuffled samples.
 We evaluate our system on the validation splits of the **PLOS** and **eLife** datasets using metrics provided by the BioLaySumm 2025 organizers. The evaluation focuses on three key aspects:
 
 ### Metrics
@@ -73,8 +80,10 @@ We evaluate our system on the validation splits of the **PLOS** and **eLife** da
 
 ### Run Evaluation
 To evaluate a generated summary file (JSON format):
-```bash
-python 
+```bash 
+python src/eval/evaluate.py \
+  --preds outputs/summaries.json \
+  --refs data/gold_summaris.json 
 ```
 
 You may need to install evaluation packages:
