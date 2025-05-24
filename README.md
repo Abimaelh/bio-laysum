@@ -25,7 +25,7 @@ pip install -r requirements.txt
 Download the PLOS and eLife datasets from the [BioLaySumm Organizers](https://biolaysumm.org/#data)
 
 ## End-to-End Pipeline
-Step 1: Preprocessing and Extract Salient Sentences
+### Step 1: Preprocessing and Extract Salient Sentences
 
 Our preprocessing mostly uses embeddings from BioBERT to make judgements about what is salient. Our preprocessing techniques are as follows:
 1. Control, just take the first 4096 tokens from the article. This doesn't have a preprocessing script.
@@ -47,6 +47,41 @@ Each of the scripts are found in the `preprocessing_script` and can be reimporte
 ```bash
 python preprocessing_script/preprocess23.py --input data/plos_train.json --output data/preprocessed_output.json
 ```
+### Step 2: Fine-tune Llama3-8B-Instruct(LoRA)
+The data for finetuning was prepared by randomly selecting 650 training instances from both eLife and PLOS, totaling 1300 shuffled samples.
+ For evaluation, we used 150 randomly
+ selected validation samples from both datasets, to
+taling 300 shuffled samples.
+
+### Step 3: Generate Lay Summaries
+Run inference with the trained model:
+```bash
+python                                
+```
+
+### Step 4: Evaluation
+We evaluate our system on the validation splits of the **PLOS** and **eLife** datasets using metrics provided by the BioLaySumm 2025 organizers. The evaluation focuses on three key aspects:
+
+### Metrics
+
+| Aspect           | Metrics Used                                                                   |
+|------------------|--------------------------------------------------------------------------------|
+| **Relevance**    | ROUGE-1, ROUGE-2, ROUGE-L, BERTScore                                           |
+| **Readability**  | Flesch-Kincaid Grade Level (FKGL), Dale-Chall (DCRS), Coleman-Liau Index (CLI) |
+| **Factuality**   | SummaC, AlignScore                                                             |
+
+
+### Run Evaluation
+To evaluate a generated summary file (JSON format):
+```bash
+python 
+```
+
+You may need to install evaluation packages:
+```bash
+pip install rouge-score bert-score summa
+```
+
 
 ### Summarization
 The actual summarization code can be found in `summarize.py`. It uses Llama-3-8B-Instruct to do inference, but you'll need a real good GPU to do this or it'll take forever. The code was designed to run on Hyak and the SLURM file to submit the code is also in the repo. Submit using the SLURM file and you should be able to generate summaries.
