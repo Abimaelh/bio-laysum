@@ -40,7 +40,7 @@ Our preprocessing mostly uses embeddings from BioBERT to make judgements about w
 Each of the scripts are found in the `preprocessing_script` and can be reimported into CoLab for use directly. You will need a GPU for this, and likely one stronger than the free tier GPUs.
 
 ### Available Scripts;
--[`preprocess23.py`](./preprocessing_script/preprocess23.py) --For Strategies 2 & 3
+-[`preprocess23.py`](./preprocessing_script/preprocess23.py) --For Strategies 2 (title) & 3 (title + keywords)
 
 -[`preprocess4.py`](./preprocessing_script/preprocess4.py) – For Strategy 4 (SVD topic modeling)
 
@@ -91,6 +91,14 @@ You may need to install evaluation packages:
 pip install rouge-score bert-score summa
 ```
 
-
 ### Summarization
 The actual summarization code can be found in `summarize.py`. It uses Llama-3-8B-Instruct to do inference, but you'll need a real good GPU to do this or it'll take forever. The code was designed to run on Hyak and the SLURM file to submit the code is also in the repo. Submit using the SLURM file and you should be able to generate summaries.
+
+
+### Counterfactual Data Augmentation Experiment ###
+Run counterfactual_dataprep.py to prepare data for counterfactual finetuning. It swaps out biomedical entities in the gold summaries for random entities within the categories that they belong to. 
+Run counterfactual_finetune.py to finetune model on counterfactually augmented data.
+
+### Postprocessing: Definition-insertion ###
+As a postprocessing step, after generating summaries, run postprocessing.py to generate term-definition dictionary. The output will be a list of dictionaries containing two fields; term-definition dictionary and the summaries.
+Run postprocessing_inference.py to paraphrase summaries using term-dictionary
