@@ -26,7 +26,7 @@ model, Tokenizer = FastLanguageModel.from_pretrained(
 # Apply LoRA adapter - weights are being updated here
 model = FastLanguageModel.get_peft_model(
     model,
-    r = 13,
+    r = 10,
     lora_alpha = 16,
     target_modules = ["q_proj", "v_proj", "k_proj", "o_proj", "gate_proj", "down_proj", "up_proj"],  # Adding more target modules
     lora_dropout = 0.1,  # Adding small dropout for regularization
@@ -134,8 +134,8 @@ trainer = SFTTrainer(
 
     args = TrainingArguments(
         output_dir = output_directory,
-        per_device_train_batch_size = 8,
-        gradient_accumulation_steps = 1,  #effective batch size: 4 x 2 #forward to compute activation, background
+        per_device_train_batch_size = 4,
+        gradient_accumulation_steps = 2,  #effective batch size: 4 x 2 #forward to compute activation, background
         learning_rate = 2e-5, #10^-5
         lr_scheduler_type = "linear", #10^5 --> 0
         #regularization
