@@ -7,7 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1BUWcrfWzM0ksbKF4fjTt1qZ2qGQaOA4B
 """
 
-!nvidia-smi
 
 from huggingface_hub import notebook_login
 
@@ -24,21 +23,6 @@ import torch
 model_id = "meta-llama/Llama-3.1-8B-Instruct"
 
 pipeline = transformers.pipeline("text-generation", model=model_id, model_kwargs={"torch_dtype": torch.bfloat16}, device_map="auto")
-
-
-messages = [
-    {"role": "system", "content": "You are a chatbot with expertise in summarizing documents"},
-    {"role": "user", "content": "Provide a lay summary of this abstract: Metabolic reprogramming enables tumour cells to sustain their continuous proliferation and adapt to the ever-changing microenvironment. Branched-chain amino acids (BCAAs) and their metabolites are involved in intracellular protein synthesis and catabolism, signal transduction, epigenetic modifications, and the maintenance of oxidative homeostasis. Alterations in BCAA metabolism can influence the progression of various tumours. However, how BCAA metabolism is dysregulated differs among depending on tumour type; for example, it can manifest as decreased BCAA metabolism leading to BCAA accumulation, or as enhanced BCAA uptake and increased catabolism. In this review, we describe the role of BCAA metabolism in the progression of different tumours. As well as discuss how BCAA metabolic reprogramming drives tumour therapy resistance and evasion of the antitumour immune response, and how these pro-cancer effects are achieved in part by activating the mTORC signalling pathway. In-depth investigations into the potential mechanisms by which BCAA metabolic reprogramming affects tumorigenesis and tumour progression can enhance our understanding of the relationship between metabolism and cancer and provide new strategies for cancer therapy."},
-]
-
-outputs = pipeline(
-    messages,
-    max_new_tokens=256,
-)
-print(outputs[0]["generated_text"][-1])
-
-
-
 from transformers import AutoTokenizer
 import numpy as np
 
@@ -84,9 +68,8 @@ def summarize(pipeline, all_data):
   return all_predicted_and_gold
 
 if __name__ == "__main__":
-  configuration = 'svd_top40'
-  repo = f"/content/drive/MyDrive/biolaysumm/processed_data/processed_data_{configuration}.json"
-  output_repo = f"/content/drive/MyDrive/biolaysumm/generated_summaries_preprocessed_{configuration}.json"
+  repo = f"path/to/input"
+  output_repo = f"/path/to/output"
 
   with open(repo, "r") as f:
     data = json.load(f)
@@ -95,9 +78,7 @@ if __name__ == "__main__":
   with open(output_repo, "w") as f:
     json.dump(all_predicted_and_gold, f)
 
-"""Instructions on how to prompt engineer by using llama3:
-https://colab.research.google.com/github/amitsangani/Llama/blob/main/Llama_3_Prompt_Engineering.ipynb/#scrollTo=aYeHVVh45bdT
-"""
+
 
 
 
