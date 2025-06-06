@@ -92,7 +92,7 @@ pip install rouge-score bert-score summa
 ```
 
 ### Summarization
-The actual summarization code can be found in `summarize.py`. It uses Llama-3-8B-Instruct to do inference, but you'll need a real good GPU to do this or it'll take forever. The code was designed to run on Hyak and the SLURM file to submit the code is also in the repo. Submit using the SLURM file and you should be able to generate summaries.
+The actual summarization code can be found in `inference.py`. It uses Llama-3-8B-Instruct to do inference, but you'll need a real good GPU to do this or it'll take forever. The code was designed to run on Hyak and the SLURM file to submit the code is also in the repo. Submit using the SLURM file and you should be able to generate summaries.
 
 
 ### Counterfactual Data Augmentation Experiment ###
